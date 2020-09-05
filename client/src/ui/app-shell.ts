@@ -3,7 +3,7 @@ import {connect, RoutingState} from '@captaincodeman/rdx'
 import { store, State } from '../store'
 import '@material/mwc-drawer';
 import '@material/mwc-snackbar';
-import './index'
+import './selfie-view'
 import {LitElement} from "lit-element";
 
 @customElement('app-shell')

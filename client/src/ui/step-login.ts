@@ -14,6 +14,7 @@ export class Login extends connect(store, LitElement) {
   @property()
   private _roles: string[] = [];
   @query('#userid')
+  // @ts-ignore
   private _useridField: TextField;
 
   mapState(state: State) {
