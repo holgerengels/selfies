@@ -12,9 +12,19 @@ export class Start extends LitElement {
   static get styles() {
     // language=CSS
     return [ css`
+      .content {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-rows: 32px min-content min-content 1fr;
+        row-gap: 16px;
+      }
       a {
         color: var(--app-primary-color);
         margin: 8px 16px;
+        font-weight: 400;
+        text-decoration: none;
+      }
+      a[hover] {
         text-decoration: underline;
       }
       a[selected] {
@@ -31,11 +41,13 @@ export class Start extends LitElement {
   render() {
     // language=HTML
     return html`
-          <a href="/app/selfie">Ich will ein Selfie machen!</a>
-          <br/>
-          <br/>
-          <br/>
-          <a href="/app/report" disabled>Report (Lehrer)</a>
+      <div class="content">
+        <div></div><div></div><div></div>
+
+        <div></div><a href="/app/selfie">Ich will ein Selfie machen!</a><div></div>
+        <div></div><a href="/app/report" disabled>Report (Lehrer)</a><div></div>
+
+        <div></div><div></div><div></div>
     `;
   }
 }

@@ -31,7 +31,7 @@ export class AppShellElement extends connect(store, LitElement) {
 
   firstUpdated() {
     if (!window.location.host.includes("selfie") && !window.location.host.includes("report")) {
-      window.location.pathname = "/app/selfie";
+      //window.location.pathname = "/app/selfie";
     }
   }
 
@@ -56,11 +56,14 @@ export class AppShellElement extends connect(store, LitElement) {
       .drawer-content a {
         margin: 8px 16px;
         font-weight: 400;
-        text-decoration: none;
       }
       a {
         color: var(--app-primary-color);
         margin: 8px 16px;
+        font-weight: 400;
+        text-decoration: none;
+      }
+      a[hover] {
         text-decoration: underline;
       }
       a[selected] {

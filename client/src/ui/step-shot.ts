@@ -47,7 +47,6 @@ export class Shot extends connect(store, LitElement) {
         grid-template-rows: 32px min-content min-content 1fr;
         row-gap: 16px;
       }
-      .content
       `,
     ];
   }
