@@ -55,7 +55,7 @@ export class AppShellElement extends connect(store, LitElement) {
       }
       .drawer-content a {
         margin: 8px 16px;
-        font-weight: 400;
+        font-weight: 500;
       }
       a {
         color: var(--app-primary-color);
@@ -63,7 +63,7 @@ export class AppShellElement extends connect(store, LitElement) {
         font-weight: 400;
         text-decoration: none;
       }
-      a[hover] {
+      a:hover {
         text-decoration: underline;
       }
       a[selected] {

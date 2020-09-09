@@ -15,16 +15,17 @@ export class Start extends LitElement {
       .content {
         display: grid;
         grid-template-columns: 1fr auto 1fr;
-        grid-template-rows: 32px min-content min-content 1fr;
+        grid-template-rows: 32px min-content 1fr;
         row-gap: 16px;
+        background-color: var(--mdc-theme-surface);
       }
       a {
         color: var(--app-primary-color);
         margin: 8px 16px;
-        font-weight: 400;
+        font-weight: 500;
         text-decoration: none;
       }
-      a[hover] {
+      a:hover {
         text-decoration: underline;
       }
       a[selected] {
@@ -45,7 +46,6 @@ export class Start extends LitElement {
         <div></div><div></div><div></div>
 
         <div></div><a href="/app/selfie">Ich will ein Selfie machen!</a><div></div>
-        <div></div><a href="/app/report" disabled>Report (Lehrer)</a><div></div>
 
         <div></div><div></div><div></div>
     `;
