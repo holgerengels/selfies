@@ -31,7 +31,7 @@ export class AppShellElement extends connect(store, LitElement) {
 
   firstUpdated() {
     if (!window.location.host.includes("selfie") && !window.location.host.includes("report")) {
-      window.location.pathname = "/app/selfie";
+      this._page = "start";
     }
   }
 
