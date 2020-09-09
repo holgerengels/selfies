@@ -32,7 +32,10 @@ export class Start extends LitElement {
     // language=HTML
     return html`
           <a href="/app/selfie">Ich will ein Selfie machen!</a>
-          <a href="/app/report" disabled>Report</a>
+          <br/>
+          <br/>
+          <br/>
+          <a href="/app/report" disabled>Report (Lehrer)</a>
     `;
   }
 }
