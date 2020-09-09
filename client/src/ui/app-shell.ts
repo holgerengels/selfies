@@ -1,9 +1,10 @@
 import {css, customElement, html, property} from "lit-element";
-import {connect, RoutingState} from '@captaincodeman/rdx'
-import { store, State } from '../store'
+import {connect, RoutingState} from '@captaincodeman/rdx';
+import { store, State } from '../store';
 import '@material/mwc-drawer';
 import '@material/mwc-snackbar';
-import './selfie-view'
+import './start-view';
+import './selfie-view';
 import {LitElement} from "lit-element";
 
 @customElement('app-shell')
@@ -52,11 +53,16 @@ export class AppShellElement extends connect(store, LitElement) {
         text-decoration: none;
       }
       a {
+        color: var(--app-primary-color);
         margin: 8px 16px;
         text-decoration: underline;
       }
+      a[selected] {
+        color: var(--app-secondary-color);
+      }
       a[disabled] {
         pointer-events: none;
+        filter: opacity(.7);
       }
       [hidden] {
         display: none !important;
@@ -74,6 +80,7 @@ export class AppShellElement extends connect(store, LitElement) {
           <a ?selected="${this._page === 'report'}" href="/app/report" disabled>Report</a>
         </div>
         <main slot="appContent" class="main-content" role="main" @drawer="${() => this._drawerOpen = !this._drawerOpen}">
+          <start-view ?hidden="${this._page !== 'start'}"></start-view>
           <selfie-view ?hidden="${this._page !== 'selfie'}"></selfie-view>
           <report-view ?hidden="${this._page !== 'report'}"></report-view>
         </main>
