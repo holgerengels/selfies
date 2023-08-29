@@ -49,8 +49,8 @@ export async function fetchjson(input: RequestInfo, init: RequestInit,
     }
   }
   catch (e) {
-    handleError({code: 500, message: e.message});
-    error(e.message);
+    handleError({code: 500, message: (e as Error).message});
+    error((e as Error).message);
   }
 }
 export async function fetchblob(input: RequestInfo, init: RequestInit,
@@ -71,7 +71,7 @@ export async function fetchblob(input: RequestInfo, init: RequestInit,
     }
   }
   catch (e) {
-    handleError({code: 500, message: e.message});
-    error(e.message);
+    handleError({code: 500, message: (e as Error).message});
+    error((e as Error).message);
   }
 }

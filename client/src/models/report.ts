@@ -27,7 +27,7 @@ export default createModel({
 
   effects(store: Store) {
     return {
-      'routing/change': async function (payload: RoutingState) {
+      'routing/change': async function (payload: RoutingState<string>) {
         // @ts-ignore
         const dispatch = store.getDispatch();
         switch (payload.page) {

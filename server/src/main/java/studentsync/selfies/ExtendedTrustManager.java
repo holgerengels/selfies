@@ -31,6 +31,7 @@ public class ExtendedTrustManager
                 }
 
                 FileInputStream myKeys = new FileInputStream(properties.getProperty("auth.trustStore"));
+                System.out.println("properties = " + properties);
                 KeyStore myTrustStore = KeyStore.getInstance(KeyStore.getDefaultType());
                 myTrustStore.load(myKeys, properties.getProperty("auth.trustStorePassword").toCharArray());
                 myKeys.close();

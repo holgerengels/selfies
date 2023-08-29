@@ -1,11 +1,11 @@
-import {css, customElement, html, property} from "lit-element";
+import {LitElement, html, css} from 'lit';
+import {customElement, property} from "lit/decorators.js";
 import {connect, RoutingState} from '@captaincodeman/rdx';
 import { store, State } from '../store';
 import '@material/mwc-drawer';
 import '@material/mwc-snackbar';
 import './start-view';
 import './selfie-view';
-import {LitElement} from "lit-element";
 
 @customElement('app-shell')
 export class AppShellElement extends connect(store, LitElement) {
@@ -16,7 +16,7 @@ export class AppShellElement extends connect(store, LitElement) {
   @property()
   private _page: string = '';
 
-  set route(val: RoutingState) {
+  set route(val: RoutingState<string>) {
     if (val.page !== this._page) {
       this._page = val.page
     }

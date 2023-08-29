@@ -1,4 +1,5 @@
-import {LitElement, customElement, property, html, css, query} from 'lit-element'
+import {LitElement, html, css} from 'lit';
+import {customElement, property, query} from "lit/decorators.js";
 import { connect } from '@captaincodeman/rdx'
 import { store, State } from '../store';
 import '@material/mwc-icon-button';
@@ -41,6 +42,7 @@ export class Snap extends connect(store, LitElement) {
       console.log(error);
     };
 
+    // @ts-ignore
     navigator.getUserMedia(constraints, function(stream) {
       // @ts-ignore
       this._video.srcObject = stream;

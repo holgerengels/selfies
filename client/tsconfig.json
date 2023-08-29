@@ -8,12 +8,17 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "noImplicitReturns": true,
+    "strictPropertyInitialization": false,
     "noImplicitAny": false,
     "importHelpers": true,
     "noEmitHelpers": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "lib": ["esnext", "dom", "dom.iterable"],
-    "baseUrl": "src"
-  }
+    "baseUrl": "src",
+    "allowJs": true,
+    "useDefineForClassFields": false
+  },
+  "include": ["node_modules/@open-wc/**/*.js", "src/**/*.ts"],
+  "exclude": ["node_modules/!(@open-wc)"]
 }

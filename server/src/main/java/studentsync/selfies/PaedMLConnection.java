@@ -86,9 +86,9 @@ public class PaedMLConnection
             searchControls.setReturningAttributes(new String[] { "employeeType" });
             searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
             searchControls.setCountLimit(10);
-            NamingEnumeration results = context.search(getProperty("paedml.userbase"), searchFilter, searchControls);
+            NamingEnumeration<SearchResult> results = context.search(getProperty("paedml.userbase"), searchFilter, searchControls);
             if (results.hasMoreElements()) {
-                SearchResult searchResult = (SearchResult)results.nextElement();
+                SearchResult searchResult = results.nextElement();
                 Attributes attributes = searchResult.getAttributes();
                 roles.add(teacherOrStudent(attributes));
             }
