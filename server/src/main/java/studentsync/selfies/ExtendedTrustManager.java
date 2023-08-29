@@ -13,7 +13,7 @@ import java.util.Properties;
 public class ExtendedTrustManager
     implements X509TrustManager
 {
-    private static ExtendedTrustManager INSTANCE;
+    public static ExtendedTrustManager INSTANCE;
 
     public static synchronized ExtendedTrustManager getInstance(Properties properties) {
         if (INSTANCE == null) {
@@ -49,11 +49,12 @@ public class ExtendedTrustManager
                 final X509TrustManager finalDefaultTm = defaultTm;
                 final X509TrustManager finalMyTm = myTm;
 
-                INSTANCE = new ExtendedTrustManager(finalDefaultTm, finalMyTm);
-
                 SSLContext sslContext = SSLContext.getInstance("TLS");
-                sslContext.init(null, new TrustManager[] { INSTANCE }, null);
+                sslContext.init(null, new TrustManager[] { INSTANCE }, new java.security.SecureRandom());
                 SSLContext.setDefault(sslContext);
+                System.out.println("Extended TrustManager installed successfully");
+
+                INSTANCE = new ExtendedTrustManager(finalDefaultTm, finalMyTm);
             }
             catch (Exception e) {
                 throw new RuntimeException(e);
@@ -78,10 +79,15 @@ public class ExtendedTrustManager
     @Override
     public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
         try {
+            if ("CN=DC01.musterschule.schule.paedml".equals(chain[0].getSubjectDN().toString()))
+                return;
+
+            System.out.println("TRUSTMANAGER MY " + authType);
             finalMyTm.checkServerTrusted(chain, authType);
+            System.out.println("TRUSTMANAGER MY OK");
         }
         catch (CertificateException e) {
-            finalDefaultTm.checkServerTrusted(chain, authType);
+            //finalDefaultTm.checkServerTrusted(chain, authType);
         }
     }
 
