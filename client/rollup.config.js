@@ -1,10 +1,12 @@
-import { createDefaultConfig } from '@open-wc/building-rollup';
+import { createSpaConfig } from '@open-wc/building-rollup';
+import merge from 'deepmerge';
 
-// if you need to support IE11 use "modern-and-legacy-config" instead.
-// import { createCompatibilityConfig } from '@open-wc/building-rollup';
-// export default createCompatibilityConfig({ input: './index.html' });
+const baseConfig = createSpaConfig({
+  developmentMode: process.env.ROLLUP_WATCH === 'true',
+  injectServiceWorker: false,
+    }
+);
 
-export default createDefaultConfig({
-  input: './index.html',
-  extensions: ['.js', '.mjs', '.ts']
+export default merge(baseConfig, {
+  input: './index.html'
 });
