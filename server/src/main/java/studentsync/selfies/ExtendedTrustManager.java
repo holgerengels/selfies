@@ -1,19 +1,22 @@
 package studentsync.selfies;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
+import com.google.gson.JsonObject;
+
+import javax.net.ssl.*;
 import java.io.FileInputStream;
+import java.net.URLConnection;
 import java.security.KeyStore;
+import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.Properties;
 
 public class ExtendedTrustManager
     implements X509TrustManager
 {
-    public static ExtendedTrustManager INSTANCE;
+    private static ExtendedTrustManager INSTANCE;
 
     public static synchronized ExtendedTrustManager getInstance(Properties properties) {
         if (INSTANCE == null) {
@@ -50,12 +53,13 @@ public class ExtendedTrustManager
                 final X509TrustManager finalDefaultTm = defaultTm;
                 final X509TrustManager finalMyTm = myTm;
 
-                SSLContext sslContext = SSLContext.getInstance("TLS");
-                sslContext.init(null, new TrustManager[] { INSTANCE }, new java.security.SecureRandom());
-                SSLContext.setDefault(sslContext);
-                System.out.println("Extended TrustManager installed successfully");
-
                 INSTANCE = new ExtendedTrustManager(finalDefaultTm, finalMyTm);
+
+                String protocoll = "TLS";
+                SSLContext sslContext = SSLContext.getInstance(protocoll);
+                sslContext.init(null, new TrustManager[] { INSTANCE }, new SecureRandom());
+                SSLContext.setDefault(sslContext);
+                System.out.println("Extended TrustManager installed successfully for " + protocoll);
             }
             catch (Exception e) {
                 throw new RuntimeException(e);
@@ -88,7 +92,7 @@ public class ExtendedTrustManager
             System.out.println("TRUSTMANAGER MY OK");
         }
         catch (CertificateException e) {
-            //finalDefaultTm.checkServerTrusted(chain, authType);
+            finalDefaultTm.checkServerTrusted(chain, authType);
         }
     }
 

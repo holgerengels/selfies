@@ -127,6 +127,7 @@ public class PaedMLConnection
             return null;
         }
         catch (NamingException e) {
+            System.out.println("e = " + e);
             throw new RuntimeException(e);
         }
     }
@@ -279,6 +280,7 @@ public class PaedMLConnection
         Properties properties = new Properties();
         properties.load(new FileInputStream(args[0]));
         ExtendedTrustManager.getInstance(properties);
+
         PaedMLConnection connection = new PaedMLConnection(properties);
         Set<String> roles = connection.doauthenticate(properties.getProperty("paedml.testuser"), properties.getProperty("paedml.testpassword"));
         System.out.println("roles = " + roles);
